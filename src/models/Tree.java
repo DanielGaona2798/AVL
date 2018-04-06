@@ -10,7 +10,5 @@ public class Tree {
 		}else {
 			root = node;
 		}
-	}
-
-	
+	}	
 }
