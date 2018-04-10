@@ -18,12 +18,6 @@ public class Controller implements ActionListener{
 		tree = new Tree();
 		tree.add(new Node(10));
 		tree.add(new Node(7));
-		tree.add(new Node(5));
-		tree.add(new Node(2));
-		tree.add(new Node(4));
-		tree.add(new Node(8));
-		tree.add(new Node(9));
-		tree.add(new Node(1));
 		
 		window = new WindowTree(this);
 		window.paintTree(tree.getRoot());
