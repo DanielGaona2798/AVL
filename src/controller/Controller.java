@@ -17,7 +17,8 @@ public class Controller implements ActionListener{
 	public Controller() {
 		tree = new Tree();
 		tree.add(new Node(10));
-		tree.add(new Node(7));
+		tree.add(new Node(13));
+		tree.add(new Node(14));
 		
 		window = new WindowTree(this);
 		window.paintTree(tree.getRoot());
@@ -28,7 +29,8 @@ public class Controller implements ActionListener{
 		if (e.getActionCommand().equals("ADD")) {
 			tree.add(new Node(Integer.valueOf(JOptionPane.showInputDialog("id"))));			
 		}else{
-			tree.delete(Integer.parseInt(JOptionPane.showInputDialog("Información del nodo a borrar")));
+			tree.balance();
+//			tree.delete(Integer.parseInt(JOptionPane.showInputDialog("Informacion del nodo a borrar")));
 		}
 		window.paintTree(tree.getRoot());
 	}

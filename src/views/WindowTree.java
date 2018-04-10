@@ -25,7 +25,7 @@ public class WindowTree extends JFrame{
 		btnAdd.setActionCommand("ADD");
 		add(btnAdd, BorderLayout.PAGE_START);
 		
-		JButton btnDelete = new JButton("-");
+		JButton btnDelete = new JButton("BALANCE");
 		btnDelete.addActionListener(listener);
 		btnDelete.setActionCommand("DELETE");
 		add(btnDelete, BorderLayout.PAGE_END);

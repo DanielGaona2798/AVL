@@ -3,6 +3,7 @@ package models;
 public class Tree {
 
 	private Node root;
+	private Node newRoot;
 
 	public void add(Node node) {
 		if (root != null) {
@@ -123,5 +124,75 @@ public class Tree {
 	
 	public Node getRoot() {
 		return root;
+	}
+
+	public void balanceLL() {
+		if(root.getLeft() != null) {
+			if(root.getLeft().getRight() != null) {
+				newRoot = root.getLeft();
+				root.setLeft(root.getLeft().getRight());
+				root.getLeft().setLeft(newRoot);
+				root.getLeft().getLeft().setRight(null);
+				root.getLeft().getLeft().setLeft(null);
+			}else {
+				newRoot = root;
+				root = root.getLeft();
+				root.setRight(newRoot);
+				root.getRight().setLeft(null);
+			}
+		}else if(root.getRight().getRight() != null) {
+			newRoot = root;
+			root = root.getRight();
+			root.setLeft(newRoot);
+			newRoot.setRight(null);
+			root.getRight().setRight(null);
+			root.getRight().setLeft(null);
+		}
+	}
+
+	public void balanceRR() {
+		if(root.getRight() != null) {
+			if(root.getRight().getLeft() != null) {
+				newRoot = root.getRight();
+				root.setRight(root.getRight().getLeft());
+				root.getRight().setRight(newRoot);
+				root.getRight().getRight().setRight(null);
+			}else {
+				newRoot = root;
+				root = root.getRight();
+				root.setLeft(newRoot);
+				root.getLeft().setRight(null);
+
+			}
+		}else if(root.getLeft().getLeft() != null) {
+			newRoot = root;
+			root = root.getLeft();
+			root.setRight(newRoot);
+			newRoot.setRight(null);
+			root.getRight().setRight(null);
+			root.getRight().setLeft(null);
+		}
+	}
+
+	public void balance() {
+		if(root.getLeft() != null && root.getLeft().getLeft() == null && root.getLeft().getRight() != null) {
+			balanceLR();
+		}else if(root.getRight() != null && root.getRight().getLeft() != null && root.getRight().getRight() == null) {
+			balanceRL();
+		}else if(root.getRight() != null){
+			balanceRR();
+		}else if(root.getLeft().getLeft() != null) {
+			balanceLL();
+		}
+	}
+
+	private void balanceRL() {
+		balanceRR();
+		balanceLL();
+	}
+
+	public void balanceLR() {
+		balanceLL();
+		balanceRR();
 	}
 }
